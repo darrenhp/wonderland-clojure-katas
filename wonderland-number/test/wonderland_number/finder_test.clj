@@ -16,3 +16,15 @@
       (is (hasAllTheSameDigits? wondernum (* 4 wondernum)))
       (is (hasAllTheSameDigits? wondernum (* 5 wondernum)))
       (is (hasAllTheSameDigits? wondernum (* 6 wondernum))))))
+
+
+(defn is-wonder2-valid[n]
+      (< (reduce + (map #(* %1 %1 %1) 
+                         (map #(- (int %) (int \0)) 
+                              (str n))))
+         10))
+
+(deftest test-wonderland2-number
+  (testing "A wonderland2 number must have the following things true about it"
+    (let [wondernum (wonderland2-number)]
+      (map #(is (is-wonder2-valid %) wondernum)))))
